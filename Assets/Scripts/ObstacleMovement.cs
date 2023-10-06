@@ -4,17 +4,27 @@ using UnityEngine;
 
 public class ObstacleMovement : MonoBehaviour
 {
+    private float leftBound = -15;
+
     public float moveSpeed;
+    public PlayerController playerController;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerController = FindAnyObjectByType<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+        if (playerController.gameOver == false)
+        {
+            transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+        }
+        if(transform.position.x < leftBound)
+        {
+            Destroy(gameObject);
+        }
     }
 }

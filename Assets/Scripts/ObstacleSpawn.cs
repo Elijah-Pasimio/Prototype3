@@ -10,9 +10,12 @@ public class ObstacleSpawn : MonoBehaviour
     public float spawnDelay = 2;
     public float spawnTime = 0.5f;
 
+    public PlayerController playerController;
+
     // Start is called before the first frame update
     void Start()
     {
+        playerController = FindAnyObjectByType<PlayerController>();
         InvokeRepeating("SpawnObstacle", spawnDelay, spawnTime);
     }
 
@@ -24,6 +27,10 @@ public class ObstacleSpawn : MonoBehaviour
 
     public void SpawnObstacle()
     {
-        Instantiate(obstacle, spawnPoint.transform.position, spawnPoint.transform.rotation);
+        if(playerController.gameOver == false)
+        {
+            Instantiate(obstacle, spawnPoint.transform.position, spawnPoint.transform.rotation);
+        }
+
     }
 }

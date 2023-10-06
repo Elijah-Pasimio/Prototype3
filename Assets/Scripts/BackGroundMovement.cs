@@ -4,25 +4,32 @@ using UnityEngine;
 
 public class BackGroundMovement : MonoBehaviour
 {
-    public float moveSpeed = 20;
-    public GameObject backGround;
+    public Vector3 startPos;
+    public float moveSpeed;
+    public float repeatWidth;
 
-    public Vector3 offset = new Vector3(45, 0 , 0);
+    public PlayerController playerController;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerController = FindAnyObjectByType<PlayerController>();
+
+        startPos = transform.position;
+        repeatWidth = GetComponent<BoxCollider>().size.x / 2;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
-        if(transform.position.x < 0)
+        if (playerController.gameOver == false)
         {
-            Instantiate(backGround, transform.position + offset, transform.rotation);
-            Destroy(gameObject);
+            transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+        }
+
+        if(transform.position.x < startPos.x - repeatWidth)
+        {
+            transform.position = startPos;
         }
     }
 }

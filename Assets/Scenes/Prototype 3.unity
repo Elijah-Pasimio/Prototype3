@@ -509,6 +509,7 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   moveSpeed: 20
   repeatWidth: 50
+  playerController: {fileID: 0}
 --- !u!65 &835818923
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -602,7 +603,8 @@ MonoBehaviour:
   obstacle: {fileID: 1385195276313916467, guid: 8e7d816d1501caf478957bf761a1d6fb, type: 3}
   spawnPoint: {fileID: 835901056}
   spawnDelay: 2
-  spawnTime: 1.5
+  spawnTime: 2
+  playerController: {fileID: 0}
 --- !u!114 &1288703845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -618,7 +620,8 @@ MonoBehaviour:
   obstacle: {fileID: 2496158181239165006, guid: 93921ec7caf13de4f8ca58b03308558f, type: 3}
   spawnPoint: {fileID: 835901056}
   spawnDelay: 2
-  spawnTime: 3
+  spawnTime: 4
+  playerController: {fileID: 0}
 --- !u!1 &2014335011
 GameObject:
   m_ObjectHideFlags: 0

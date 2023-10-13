@@ -5,7 +5,7 @@ using UnityEngine;
 public class AnimatedPlayerController : MonoBehaviour
 {
     //Movement Variables
-    private float verticalInput;
+    public float verticalInput;
     public float moveSpeed;
 
     private float horizontalInput;
@@ -19,6 +19,8 @@ public class AnimatedPlayerController : MonoBehaviour
     //Animation Variables
     private Animator animator;
 
+    public ParticleSystem dust;
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +28,8 @@ public class AnimatedPlayerController : MonoBehaviour
         //Get Components
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+
+        dust.Stop();
 
     }
 
@@ -36,6 +40,17 @@ public class AnimatedPlayerController : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
         transform.Translate(Vector3.forward * Time.deltaTime * moveSpeed * verticalInput);
         animator.SetFloat("VerticalInput", Mathf.Abs(verticalInput));
+
+        if(verticalInput > 0 && isOnGround && !dust.isPlaying)
+        {
+            //dust.gameObject.SetActive(true);
+            dust.Play();
+        }
+        else if (verticalInput <= 0 && !isOnGround && dust.isPlaying)
+        {
+            //dust.gameObject.SetActive(false);
+            dust.Stop();
+        }
 
         //Rotation
         horizontalInput = Input.GetAxis("Horizontal");
